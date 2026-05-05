@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DTFT Explorer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="layout">
+      <h1>Discrete-Time Fourier Transform Explorer</h1>
+      <p class="subtitle">Pick a signal, tweak parameters, and inspect time/frequency views.</p>
+
+      <section class="controls">
+        <label>
+          Sample signal
+          <select id="signalType">
+            <option value="sinusoid">Sinusoid</option>
+            <option value="damped">Damped exponential</option>
+            <option value="rect">Rectangular pulse</option>
+          </select>
+        </label>
+
+        <label>
+          Number of samples (N)
+          <input id="length" type="range" min="16" max="128" step="1" value="64" />
+          <span id="lengthValue">64</span>
+        </label>
+
+        <label data-param="amplitude">
+          Amplitude
+          <input id="amplitude" type="range" min="0" max="2" step="0.05" value="1" />
+          <span id="amplitudeValue">1.00</span>
+        </label>
+
+        <label data-param="frequency">
+          Normalized frequency (cycles/sample)
+          <input id="frequency" type="range" min="0" max="0.5" step="0.01" value="0.12" />
+          <span id="frequencyValue">0.12</span>
+        </label>
+
+        <label data-param="phase">
+          Phase (radians)
+          <input id="phase" type="range" min="-3.14" max="3.14" step="0.01" value="0" />
+          <span id="phaseValue">0.00</span>
+        </label>
+
+        <label data-param="decay" class="hidden">
+          Decay factor (0..1)
+          <input id="decay" type="range" min="0.7" max="0.999" step="0.001" value="0.92" />
+          <span id="decayValue">0.920</span>
+        </label>
+
+        <label data-param="width" class="hidden">
+          Pulse width
+          <input id="width" type="range" min="1" max="64" step="1" value="12" />
+          <span id="widthValue">12</span>
+        </label>
+      </section>
+
+      <section class="plots">
+        <figure>
+          <h2>Time-domain signal x[n]</h2>
+          <canvas id="timeCanvas" width="900" height="260"></canvas>
+        </figure>
+        <figure>
+          <h2>DTFT magnitude |X(ω)|</h2>
+          <canvas id="freqCanvas" width="900" height="260"></canvas>
+        </figure>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
